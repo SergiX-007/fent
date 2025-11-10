@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clé Arena</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Borel&family=Cherry+Bomb+One&family=Delius+Swash+Caps&family=Freckle+Face&family=Grand+Hotel&family=Pacifico&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&family=Sirivennela&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --noir-sombre: #0d0d0d;
+            --gris-sombre: #1a1a1a;
+            --gris-moyen: #2d2d2d;
+            --gris-clair: #c0c0c0;
+            --blanc-casse: #f0f0f0;
+            --accent: #fdde2a;
+            --active: #88ff00;
+            --visited: #d437bf;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--noir-sombre);
+            color: var(--blanc-casse);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        header {
+            background-color: rgba(13, 13, 13, 0.95);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent), #d4af37);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--noir-sombre);
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-family:"Borel", cursive;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            font-family:"Borel", cursive;
+            color: var(--blanc-casse);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+            cursor: pointer;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        nav ul li a:visited {
+            color: var(--visited);
+        }
+        nav ul li a:active {
+            color: var(--active);
+        }
+        
+        /* Menu hamburger */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--blanc-casse);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(13, 13, 13, 0.8), rgba(13, 13, 13, 0.9)), 
+                        url('https://smart-villas-mauritius.com/wp-content/uploads/2019/11/Clos-du-Litoral_016.jpg') no-repeat center center/cover;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family:"Borel", cursive;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--gris-clair);
+        }
+        h3{
+            font-family: "Borel", cursive;
+        }
+
+        .btn {
+            font-family: "Shantell Sans", cursive;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), #d4af37);
+            color: var(--noir-sombre);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(138, 109, 59, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(138, 109, 59, 0.4);
+        }
+        .btn-reserv {
+            font-family: "Shantell Sans", cursive;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), #d4af37);
+            color: var(--noir-sombre);
+            margin-top: 10px;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(138, 109, 59, 0.3);
+        }
+        .btn-reserv:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(138, 109, 59, 0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: var(--noir-sombre);
+        }
+
+        .Title {
+            font-family: "Borel", cursive;
+            text-align: center;
+            margin: 60px 0 40px;
+            font-size: 2.5rem;
+            color: var(--blanc-casse);
+            position: relative;
+        }
+
+        .Title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent), #d4af37);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .card {
+            background-color: var(--gris-sombre);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--gris-moyen);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .page {
+            padding: 25px;
+        }
+
+        .page-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--blanc-casse);
+        }
+
+        .page-text {
+            color: var(--gris-clair);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .prix {
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin: 10px 0;
+        }
+
+        .résumé {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--gris-clair);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .ville {
+            margin-bottom: 60px;
+        }
+
+        .nom-ville {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--accent);
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+        }
+
+        .proprio-card {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: var(--gris-moyen);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .proprio-card:hover {
+            background-color: var(--gris-moyen);
+            transform: translateX(10px);
+        }
+
+        .avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #d4af37);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--noir-sombre);
+            font-size: 1.5rem;
+            margin-right: 20px;
+        }
+
+        .info {
+            flex: 1;
+        }
+
+        .nom {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .crtqs {
+            color: var(--gris-clair);
+            font-size: 0.9rem;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .contact-card {
+            background-color: var(--gris-sombre);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--gris-moyen);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .contact-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #d4af37);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--noir-sombre);
+            font-size: 2rem;
+            margin: 0 auto 20px;
+        }
+
+        .contact-name {
+            font-family: "Shantell Sans", cursive;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-localisation {
+            font-family: "Shantell Sans", cursive;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .contact-details {
+            margin-bottom: 25px;
+        }
+
+        .contact-details p {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .contact-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .contact-btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .email-btn {
+            background: linear-gradient(135deg, var(--accent), #d4af37);
+            color: var(--noir-sombre);
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background-color: var(--gris-sombre);
+            padding: 50px 0 20px;
+            margin-top: 50px;
+            border-top: 1px solid var(--gris-moyen);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-column p, .footer-column a {
+            color: var(--gris-clair);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--gris-moyen);
+            color: var(--gris-clair);
+            font-size: 0.9rem;
+        }
+
+        /* Styles pour la navigation unifiée */
+        .page-section {
+            display: none;
+        }
+
+        .active-section {
+            display: block;
+        }
+
+        .nav-active {
+            color: var(--accent);
+        }
+
+        /* Media Queries pour le menu mobile */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--noir-sombre);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+                z-index: 999;
+           
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+           
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .Title {
+                font-size: 2rem;
+            }
+            
+            .contact-actions {
+                flex-direction: column;
+            }
+            
+            .proprio-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .avatar {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .page {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navigation">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="logo-text">Clé Arena</div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a id="nav-accueil" class="nav-link nav-active" data-section="accueil">Accueil</a></li>
+                    <li><a id="nav-proprietaires" class="nav-link" data-section="proprietaires">Propriétaires</a></li>
+                    <li><a id="nav-maisons" class="nav-link" data-section="maisons">Maisons</a></li>
+                    <li><a id="nav-contact" class="nav-link" data-section="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section Accueil -->
+    <section id="accueil" class="page-section active-section">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Trouvez votre logement étudiant à Maurice</h1>
+                <p>Une solution simple et efficace pour les étudiants étrangers cherchant un logement sûr et abordable</p>
+                <a class="btn" data-section="maisons">Découvrir nos logements</a>
+            </div>
+        </div>
+        
+        <div class="container">
+            <section>
+                <h2 class="Title">Notre Mission</h2>
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <p>En tant qu'ancien étudiant étranger à Maurice, j'ai personnellement vécu les difficultés de trouver un logement adapté et abordable. Les démarches administratives, la barrière linguistique et le manque de ressources centralisées rendent cette recherche particulièrement stressante.</p>
+                    <p style="margin-top: 20px;">Clé Arena a été créé pour simplifier ce processus et permettre aux étudiants de se concentrer sur leurs études plutôt que sur la recherche d'un toit. Nous mettons en relation directe les étudiants avec des propriétaires de confiance, avec des logements vérifiés et des prix transparents.</p>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="Title">Villes Desservies</h2>
+                <div class="grid">
+                    <div class="card">
+                        <div class="page">
+                            <h3 class="page-title">Port Louis</h3>
+                            <p class="page-text">Logements à proximité des universités du centre-ville et des transports en commun. Accès facile aux bibliothèques et centres commerciaux.</p>
+                            <a class="btn btn-outline" data-section="proprietaires">Voir les propriétaires</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="page">
+                            <h3 class="page-title">Curepipe</h3>
+                            <p class="page-text">Environnement calme et studieux, idéal pour la concentration. Nombreux espaces verts et bibliothèques publiques à proximité.</p>
+                            <a class="btn btn-outline" data-section="proprietaires">Voir les propriétaires</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="page">
+                            <h3 class="page-title">Quatre Bornes</h3>
+                            <p class="page-text">Zone résidentielle bien desservie avec de nombreux commerces et services. Vie étudiante active et diversifiée.</p>
+                            <a class="btn btn-outline" data-section="proprietaires">Voir les propriétaires</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- Section Propriétaires -->
+    <section id="proprietaires" class="page-section">
+        <div class="container">
+            <h2 class="Title">Nos Propriétaires</h2>
+            
+            <div class="ville">
+                <h3 class="nom-ville">Port Louis</h3>
+                
+                <div class="proprio-card">
+                    <div class="avatar">AK</div>
+                    <div class="info">
+                        <h3 class="nom">M. Ahmed Khan</h3>
+                        <p class="crtqs">3 appartements étudiants • Spécialiste des studios meublés</p>
+                    </div>
+                    <a class="btn" data-section="contact">Contacter</a>
+                </div>
+                
+                <div class="proprio-card">
+                    <div class="avatar">MP</div>
+                    <div class="info">
+                        <h3 class="nom">Mme. Marie-Louise Perrine</h3>
+                        <p class="crtqs">5 chambres en colocation • Expérience: 8 ans</p>
+                    </div>
+                    <a class="btn" data-section="contact">Contacter</a>
+                </div>
+            </div>
+            
+            <div class="ville">
+                <h3 class="nom-ville">Curepipe</h3>
+                
+                <div class="proprio-card">
+                    <div class="avatar">RP</div>
+                    <div class="info">
+                        <h3 class="nom">M. Rajiv Patel</h3>
+                        <p class="crtqs">2 maisons individuelles • Jardin et terrasse inclus</p>
+                    </div>
+                    <a class="btn" data-section="contact">Contacter</a>
+                </div>
+            </div>
+            
+            <div class="ville">
+                <h3 class="nom-ville">Quatre Bornes</h3>
+                
+                <div class="proprio-card">
+                    <div class="avatar">SL</div>
+                    <div class="info">
+                        <h3 class="nom">Mme. Sophie Li</h3>
+                        <p class="crtqs">4 appartements meublés • Proche des transports</p>
+                    </div>
+                    <a class="btn" data-section="contact">Contacter</a>
+                </div>
+                
+                <div class="proprio-card">
+                    <div class="avatar">JD</div>
+                    <div class="info">
+                        <h3 class="nom">M. Jean-Pierre Durand</h3>
+                        <p class="crtqs">6 studios équipés • Internet haut débit inclus</p>
+                    </div>
+                    <a class="btn" data-section="contact">Contacter</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Maisons -->
+    <section id="maisons" class="page-section">
+        <div class="container">
+            <h2 class="Title">Logements Disponibles</h2>
+            
+            <div class="grid">
+                <div class="card">
+                    <img src="https://scontent.fmru5-1.fna.fbcdn.net/v/t39.30808-6/532898507_122170858388501754_2682270913111610549_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=102&ccb=1-7&_nc_sid=454cf4&_nc_ohc=BDk-UckuYRgQ7kNvwHxbz5Q&_nc_oc=AdltjNHAPAgY-xFCEKmuSERLEBWNQhNVEQR-aXk-5CdvJGLzmlmoqildo1uOGZY6nAw&_nc_zt=23&_nc_ht=scontent.fmru5-1.fna&_nc_gid=1hQFMnP48QOoz5j4A9gOtw&oh=00_Afe0FE460NAqUTEsXm_QXyBgP7UsgiGR408pmTvwGpWQOw&oe=690A9ABC" class="card-img">
+                    <div class="page">
+                        <h3 class="page-title">Maison à louer - Vallée des prêtres - Port Louis</h3>
+                        <p class="page-text">Maison non meublé avec salle de bain privée. Proche des commerces et transports. </p>
+                        <div class="prix">20 000 MUR/mois</div>
+                        <div class="résumé">
+                            <span><i class="fas fa-bed"></i> 3 chambres</span>
+                            <span><i class="fas fa-ruler-combined"></i> 25 m²</span>
+                            <span><i class="fas fa-wifi"></i> Wi-Fi inclus</span>
+                        </div>
+                        <p style="margin-top: 10px;"><strong>Propriétaire:</strong> M. Ahmed Khan</p>
+                        <a class="btn-reserv" data-section="contact">Réserver</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://frealimmobilier.com/phpThumb/phpThumb.php?src=../photo/freal16918p38784xmriq.jpg&w=454&h=302&zc=1" alt="Colocation Curepipe" class="card-img">
+                    <div class="page">
+                        <h3 class="page-title">Colocation - Curepipe</h3>
+                        <p class="page-text">Chambres spacieuses partagée avec 4 autres étudiants maximum. Jardin, terrasse, salon commun et cuisine entièrement équipée.</p>
+                        <div class="prix">18 200 MUR/mois</div>
+                        <div class="résumé">
+                            <span><i class="fas fa-bed"></i> 2 chambres</span>
+                            <span><i class="fas fa-ruler-combined"></i> 30 m²</span>
+                            <span><i class="fas fa-users"></i> Colocation</span>
+                        </div>
+                        <p style="margin-top: 10px;"><strong>Propriétaire:</strong> M. Rajiv Patel</p>
+                        <a class="btn-reserv" data-section="contact">Réserver</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://www.lexpressproperty.com/local/cache-intervention/L412xH292/jpg/photo-maison_villa_3_chambres_185_m2-EowB2UtwLd6rb872.jpg" alt="Appartement Quatre Bornes" class="card-img">
+                    <div class="page">
+                        <h3 class="page-title">Appartement T2 - Quatre Bornes</h3>
+                        <p class="page-text">Appartement de 2 pièces, cuisine équipée, proche de la gare routière. Idéal pour couple d'étudiants ou colocataires.</p>
+                        <div class="prix">12 000 MUR/mois</div>
+                        <div class="résumé">
+                            <span><i class="fas fa-bed"></i> 2 chambres</span>
+                            <span><i class="fas fa-ruler-combined"></i> 45 m²</span>
+                            <span><i class="fas fa-parking"></i> Parking</span>
+                        </div>
+                        <p style="margin-top: 10px;"><strong>Propriétaire:</strong> Mme. Sophie Li</p>
+                        <a class="btn-reserv" data-section="contact">Réserver</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://scontent.fmru5-1.fna.fbcdn.net/v/t39.30808-6/492132402_2363499894035426_2613823710568588780_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=100&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=jY28Mi32rosQ7kNvwGrZy9_&_nc_oc=Admg6d4uGFlm2JwE1E8Tt8kUTlt9LeHgCPtP5NYa5YPquAqykd9_Ux0eLvZDrIipd0Q&_nc_zt=23&_nc_ht=scontent.fmru5-1.fna&_nc_gid=huR0LeXkGsQew7UdtSLDjw&oh=00_AffmseJ_06nCyE9xHwcf9WeKlbygLmPbpEBJdc-deLPGeg&oe=690A7CD3" alt="Studio Quatre Bornes" class="card-img">
+                    <div class="page">
+                        <h3 class="page-title">Studio étudiant - Quatre Bornes</h3>
+                        <p class="page-text">Studio récemment rénové, literie fournie, internet haut débit inclus. Idéal pour étudiant seul cherchant tranquillité.</p>
+                        <div class="prix">7 800 MUR/mois</div>
+                        <div class="résumé">
+                            <span><i class="fas fa-bed"></i> 1 chambre</span>
+                            <span><i class="fas fa-ruler-combined"></i> 22 m²</span>
+                            <span><i class="fas fa-tv"></i> TV incluse</span>
+                        </div>
+                        <p style="margin-top: 10px;"><strong>Propriétaire:</strong> M. Jean-Pierre Durand</p>
+                        <a class="btn-reserv" data-section="contact">Réserver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="page-section">
+        <div class="container">
+            <h2 class="Title">Contactez les Propriétaires</h2>
+            
+            <div class="contact-container">
+                <div class="contact-card">
+                    <div class="contact-avatar">AK</div>
+                    <h2 class="contact-name">M. Ahmed Khan</h2>
+                    <p class="contact-localisation">Port Louis</p>
+                    <div class="contact-details">
+                        <p><i class="fas fa-phone"></i> +230 57 16 46 27</p>
+                        <p><i class="fas fa-envelope"></i> ahmed.khan@example.mu</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 3 appartements disponibles</p>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="mailto:ahmed.khan@example.mu?subject=Demande de réservation&body=Bonjour, je souhaiterais réserver un logement. Pouvez-vous me donner plus d'informations ?" class="contact-btn email-btn">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/23051234567?text=Bonjour, je souhaiterais réserver un logement. Pouvez-vous me donner plus d'informations ?" class="contact-btn whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-avatar">MP</div>
+                    <h2 class="contact-name">Mme. Marie-Louise Perrine</h2>
+                    <p class="contact-localisation">Port Louis</p>
+                    <div class="contact-details">
+                        <p><i class="fas fa-phone"></i> +230 5 234 5678</p>
+                        <p><i class="fas fa-envelope"></i> ml.perrine@example.mu</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 5 chambres en colocation</p>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="mailto:ml.perrine@example.mu?subject=Demande de réservation&body=Bonjour, je souhaiterais réserver un logement. Pouvez-vous me donner plus d'informations ?" class="contact-btn email-btn">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/23052345678?text=Bonjour, je souhaiterais réserver un logement. Pouvez-vous me donner plus d'informations ?" class="contact-btn whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-avatar">RP</div>
+                    <h2 class="contact-name">M. Rajiv Patel</h2>
+                    <p class="contact-localisation">Curepipe</p>
+                    <div class="contact-details">
+                        <p><i class="fas fa-phone"></i> +230 5 345 6789</p>
+                        <p><i class="fas fa-envelope"></i> rajiv.patel@example.mu</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 2 maisons individuelles</p>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="mailto:rajiv.patel@example.mu?subject=Demande de réservation&body=Bonjour, je souhaiterais réserver un logement. Pouvez-vous me donner plus d'informations ?" class="contact-btn email-btn">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/23053456789?text=Bonjour, je souhaiterais réserver un logement. Pouvez-vous me donner plus d'informations ?" class="contact-btn whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-avatar">SL</div>
+                    <h2 class="contact-name">Mme. Sophie Li</h2>
+                    <p class="contact-localisation">Quatre Bornes</p>
+                    <div class="contact-details">
+                        <p><i class="fas fa-phone"></i> +230 5 456 7890</p>
+                        <p><i class="fas fa-envelope"></i> sophie.li@example.mu</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 4 appartements meublés</p>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="mailto:sophie.li@example.mu?subject=Demande de réservation&body=Bonjour, je souhaiterais réserver un logement. Pouvez-vous me donner plus d'informations ?" class="contact-btn email-btn">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/23054567890?text=Bonjour, je souhaiterais réserver un logement. Pouvez-vous me donner plus d'informations ?" class="contact-btn whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-avatar">JD</div>
+                    <h2 class="contact-name">M. Jean-Pierre Durand</h2>
+                    <p class="contact-localisation">Quatre Bornes</p>
+                    <div class="contact-details">
+                        <p><i class="fas fa-phone"></i> +230 5 567 8901</p>
+                        <p><i class="fas fa-envelope"></i> jp.durand@example.mu</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 6 studios équipés</p>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="mailto:jp.durand@example.mu?subject=Demande de réservation&body=Bonjour, je souhaiterais réserver un logement. Pouvez-vous me donner plus d'informations ?" class="contact-btn email-btn">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/23055678901?text=Bonjour, je souhaiterais réserver un logement. Pouvez-vous me donner plus d'informations ?" class="contact-btn whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Clé Arena</h3>
+                    <p>Facilitant la vie des étudiants étrangers à Maurice en leur offrant un accès simple et sécurisé à des logements de qualité.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens rapides</h3>
+                    <a class="footer-nav" data-section="accueil">Accueil</a>
+                    <a class="footer-nav" data-section="proprietaires">Propriétaires</a>
+                    <a class="footer-nav" data-section="maisons">Maisons disponibles</a>
+                    <a class="footer-nav" data-section="contact">Contact</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Villes desservies</h3>
+                    <a class="footer-nav" data-section="proprietaires">Port Louis</a>
+                    <a class="footer-nav" data-section="proprietaires">Curepipe</a>
+                    <a class="footer-nav" data-section="proprietaires">Quatre Bornes</a>
+                    <a class="footer-nav" data-section="proprietaires">Rose Hill</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> contact@studentlodgemauritius.mu</p>
+                    <p><i class="fas fa-phone"></i> +230 57 16 46 27</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Port Louis, Maurice</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Clé Arena - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gestion de la navigation entre les sections
+        document.addEventListener('DOMContentLoaded', function() {
+            // Récupérer tous les liens de navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            const footerLinks = document.querySelectorAll('.footer-nav');
+            const allLinks = [...navLinks, ...footerLinks];
+            
+            // Récupérer toutes les sections
+            const sections = document.querySelectorAll('.page-section');
+            
+            // Récupérer le bouton du menu mobile et le menu
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            
+            // Fonction pour afficher une section spécifique
+            function showSection(sectionId) {
+                // Masquer toutes les sections
+                sections.forEach(section => {
+                    section.classList.remove('active-section');
+                });
+                
+                // Afficher la section demandée
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    targetSection.classList.add('active-section');
+                }
+                
+                // Mettre à jour la navigation active
+                navLinks.forEach(link => {
+                    link.classList.remove('nav-active');
+                    if (link.getAttribute('data-section') === sectionId) {
+                        link.classList.add('nav-active');
+                    }
+                });
+                
+                // Fermer le menu mobile après avoir cliqué sur un lien
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                }
+                
+                // Faire défiler vers le haut de la page
+                window.scrollTo(0, 0);
+                
+                // Mettre à jour l'URL avec un hash
+                window.location.hash = sectionId;
+            }
+            
+            // Ajouter des écouteurs d'événements pour tous les liens de navigation
+            allLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetSection = this.getAttribute('data-section');
+                    showSection(targetSection);
+                });
+            });
+            
+            // Gérer les boutons "Réserver" et "Contacter"
+            const reserveButtons = document.querySelectorAll('.btn-reserv, .btn');
+            reserveButtons.forEach(button => {
+                if (button.getAttribute('data-section')) {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetSection = this.getAttribute('data-section');
+                        showSection(targetSection);
+                    });
+                }
+            });
+            
+            // Gérer le bouton du menu hamburger
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                
+                // Changer l'icône du bouton
+                const icon = this.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Fermer le menu mobile lorsqu'on clique en dehors
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('nav') && !e.target.closest('.mobile-menu-btn')) {
+                    navMenu.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Gérer le chargement initial de la page avec hash
+            if (window.location.hash) {
+                const sectionId = window.location.hash.substring(1);
+                showSection(sectionId);
+            }
+        });
+    </script>
+</body>
+</html>
